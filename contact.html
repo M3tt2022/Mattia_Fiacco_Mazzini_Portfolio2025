@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Mattia Fiacco Mazzini</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to contact page */
+        .contact-hero {
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 0 4rem;
+            background-color: var(--light-gray);
+            position: relative;
+        }
+        
+        .contact-hero .hero-content {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: transparent; /* Rimuove il rettangolo bianco */
+        }
+        
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--dark-gray);
+        }
+        
+        .contact-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: #1a365d;
+            font-size: 1.2rem;
+        }
+        
+        .contact-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-text p, .contact-text a {
+            color: var(--dark-gray);
+            font-size: 1rem;
+        }
+        
+        .contact-text a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a365d;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: #1a365d;
+            color: var(--light-text);
+            transform: translateY(-2px);
+        }
+        
+        .contact-form {
+            background-color: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .contact-form h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: #1a365d;
+            color: var(--light-text);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: #2a4a7f;
+            transform: translateY(-2px);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                margin-top: 2rem;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">MFM</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-hero">
+            <div class="hero-content">
+                <h1 class="bicolor-title">Get In <span>Touch</span></h1>
+                <p>Feel free to reach out if you're interested in my work, have questions about my projects, or would like to discuss potential collaborations.</p>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2 class="bicolor-title">Contact <span>Information</span></h2>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p><a href="mailto:mattia.fiaccomazzini@mail.polimi.it">mattia.fiaccomazzini@mail.polimi.it</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Phone</h3>
+                                <p><a href="tel:+393315631616">+39 331 563 1616</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Location</h3>
+                                <p>Milan, Italy</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>Connect with me</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-behance"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2>Send Me a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Mattia Fiacco Mazzini</h3>
+                <p>Industrial + Service and UX Designer</p>
+                <p>MSc Integrated Product Design - Politecnico di Milano</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> mattia.fiaccomazzini@mail.polimi.it</p>
+                <p><i class="fas fa-phone"></i> +39 331 563 1616</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024/2025 Mattia Fiacco Mazzini. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Contact form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real implementation, you would send the form data to a server
+            // For this demo, we'll just show an alert
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

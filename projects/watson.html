@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WATSON - Mattia Fiacco Mazzini</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to project detail page */
+        .project-hero {
+            height: 70vh;
+            background-color: var(--light-gray);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 5rem;
+        }
+        
+        .project-hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .project-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .meta-item span {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.3rem;
+        }
+        
+        .meta-item strong {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .section-image {
+            height: 400px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .section-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li i {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .gallery-section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .next-prev-projects {
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .prev-project, .next-project {
+            display: flex;
+            align-items: center;
+        }
+        
+        .prev-project i, .next-project i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .prev-project i {
+            margin-right: 1rem;
+        }
+        
+        .next-project i {
+            margin-left: 1rem;
+        }
+        
+        .project-nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .project-nav-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .project-nav-name {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.3rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .project-meta-info {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .next-prev-projects {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">MFM</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../projects.html" class="active">Projects</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="project-hero-content">
+                <h1>WATSON</h1>
+                <p>A smart mole mapper that scans your skin to create a digital map of moles.</p>
+                <div class="project-meta-info">
+                    <div class="meta-item">
+                        <span>Project Type</span>
+                        <strong>Healthcare</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Duration</span>
+                        <strong>1 month</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Year</span>
+                        <strong>2024</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Category</span>
+                        <strong>Open-source</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <!-- Placeholder for project overview image -->
+                </div>
+                <div class="section-text">
+                    <h3>The Concept</h3>
+                    <p>Watson is a smart mole mapper able to scan your skin in order to create a digital map of the moles on your body. It can be paired with a mobile app to generate a database to be shared directly with your doctor.</p>
+                    <p>This tool allows for the autonomous mapping of moles on the body, enabling users to keep track of their evolution. It features an ergonomic handle, designed to be easy to use and facilitate skin scanning operations.</p>
+                    <p>This is an open source project because I wanted to create a device that could be produced on demand, only if needed, moving from an industrial perspective to a more sustainable one.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">The Research</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>On a global scale, cases of melanoma increase by 100,000 people every year. However, lots of people do not take enough care of this aspect. Self-examination is crucial for early detection, especially for those with numerous moles or a history of melanoma. Even those without medical records should monitor their skin.</p>
+                    <p>Professional dermatologist visits can be uncomfortable and costly. Watson aims not just to simplify skin tracking but also enable autonomous checks, cutting of the expenses.</p>
+                    <p>The concept drew inspiration from hacking an existing product: the endoscope.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Early detection of skin changes</li>
+                        <li><i class="fas fa-check-circle"></i> Autonomous monitoring</li>
+                        <li><i class="fas fa-check-circle"></i> Cost-effective solution</li>
+                        <li><i class="fas fa-check-circle"></i> Digital tracking and sharing</li>
+                        <li><i class="fas fa-check-circle"></i> Open-source design</li>
+                    </ul>
+                </div>
+                <div class="section-image">
+                    <!-- Placeholder for research image -->
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Product for All</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <!-- Placeholder for product image -->
+                </div>
+                <div class="section-text">
+                    <p>The product concept originated from hacking an endoscope, a device that uses a small camera to observe and capture images in tight or hidden spaces, such as inside pipes. We repurposed the core principles of the endoscope—specifically its camera and electronic components—as the foundation for our design, making them a central element in the development of the project.</p>
+                    <p>Watson includes a high-resolution camera with LED lights, essential for capturing clear images even in low light conditions. This camera is connected to a printed circuit board (PCB) with an advanced USB-C interface, allowing data transfer and communication with other devices.</p>
+                    <p>The power supply is provided by a rechargeable lithium-ion battery, which ensures prolonged operation of the device. Watson is crafted to be intuitive and accessible for all users. Its ergonomic design offers various gripping options, making it easy to scan moles in hard-to-reach areas like the back.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">The Service</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <h3>How It Works</h3>
+                    <p>Users have to install the Watson Application, register with their data, and configure it with the device. At this point, they will visualize their own avatar on which they can save their moles for monitoring and compare them using the ABCDE method implemented in the app with AI Tech.</p>
+                    <p>The device can be easily and quickly placed on the interested area, and by pressing the button, a photo can be taken and added to the database. Users can continue with regular checks thanks to scheduled notifications. Additionally a PDF report can be generated and forwarded to their dermatologist.</p>
+                    <p>Watson is designed as a product-service system, entirely open-source, the files of the part list can be downloaded from a dedicated website.</p>
+                </div>
+                <div class="section-image">
+                    <!-- Placeholder for service image -->
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2 class="section-title">Project Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 1 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 2 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 3 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 4 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 5 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 6 -->
+                </div>
+            </div>
+        </section>
+
+        <div class="next-prev-projects">
+            <div class="prev-project">
+                <i class="fas fa-arrow-left"></i>
+                <div>
+                    <a href="otium.html" class="project-nav-link">Previous Project</a>
+                    <span class="project-nav-name">OTIUM</span>
+                </div>
+            </div>
+            <div class="next-project">
+                <div>
+                    <a href="eluft.html" class="project-nav-link">Next Project</a>
+                    <span class="project-nav-name">ELUFT</span>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Mattia Fiacco Mazzini</h3>
+                <p>Industrial + Service and UX Designer</p>
+                <p>MSc Integrated Product Design - Politecnico di Milano</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> mattia.fiaccomazzini@mail.polimi.it</p>
+                <p><i class="fas fa-phone"></i> +39 331 563 1616</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024/2025 Mattia Fiacco Mazzini. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

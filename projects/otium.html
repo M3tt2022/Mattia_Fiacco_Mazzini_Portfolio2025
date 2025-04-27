@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTIUM - Mattia Fiacco Mazzini</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to project detail page */
+        .project-hero {
+            height: 70vh;
+            background-color: var(--light-gray);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 5rem;
+        }
+        
+        .project-hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .project-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .meta-item span {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.3rem;
+        }
+        
+        .meta-item strong {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .section-image {
+            height: 400px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .section-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li i {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .gallery-section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .configurations-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .configurations-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        
+        .configuration-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .configuration-image {
+            height: 350px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .configuration-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .configuration-text p {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        
+        .configuration-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+        
+        .technical-details {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--light-gray);
+        }
+        
+        .technical-content {
+            margin-top: 3rem;
+        }
+        
+        .technical-content p {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .next-prev-projects {
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .prev-project, .next-project {
+            display: flex;
+            align-items: center;
+        }
+        
+        .prev-project i, .next-project i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .prev-project i {
+            margin-right: 1rem;
+        }
+        
+        .next-project i {
+            margin-left: 1rem;
+        }
+        
+        .project-nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .project-nav-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .project-nav-name {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.3rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-content,
+            .configuration-item {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-image,
+            .configuration-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .project-meta-info {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .next-prev-projects {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">MFM</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../projects.html" class="active">Projects</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="project-hero-content">
+                <h1>OTIUM</h1>
+                <p>A multifunctional furniture system designed to enhance both relaxation and workspaces.</p>
+                <div class="project-meta-info">
+                    <div class="meta-item">
+                        <span>Project Type</span>
+                        <strong>Furniture System</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Duration</span>
+                        <strong>9 months</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Year</span>
+                        <strong>2022-2023</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Category</span>
+                        <strong>Thesis Project</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <!-- Placeholder for project overview image -->
+                </div>
+                <div class="section-text">
+                    <h3>The Concept</h3>
+                    <p>Otium is a multifunctional system designed to enhance both relaxation and workspaces. It features a wireless charging zone, a magnetic spotlight for convenience, and thermoformed felt panels that double as armrests.</p>
+                    <p>A key element of Otium is its adjustable sound-absorbing R-PET panel, allowing users to adapt the space for better acoustic privacy. A mechanism in the backrest maintains ergonomic support via a non-woven fabric membrane when the Shuckra system is activated.</p>
+                    <p>Otium is fully disassemblable and made from recyclable materials, prioritizing sustainability and reducing environmental impact.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">The Aim</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>The aim of the project was to create a versatile product that provides both visual and acoustic privacy, enhancing relaxation and productivity in workspaces.</p>
+                    <p>The product is adaptable for users, allowing breaks from work or soft work activities. By incorporating an adjustable sound-absorbing R-PET panel, the design allows users to customize their environment for improved acoustics, facilitating both focused work and restorative breaks.</p>
+                    <p>The product is fully disassemblable and constructed from recyclable materials, minimizing the environmental impact.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Visual and acoustic privacy</li>
+                        <li><i class="fas fa-check-circle"></i> Adaptable for both relaxation and work</li>
+                        <li><i class="fas fa-check-circle"></i> Sound-absorbing R-PET panel</li>
+                        <li><i class="fas fa-check-circle"></i> Wireless charging zone</li>
+                        <li><i class="fas fa-check-circle"></i> Sustainable materials</li>
+                        <li><i class="fas fa-check-circle"></i> Fully disassemblable design</li>
+                    </ul>
+                </div>
+                <div class="section-image">
+                    <!-- Placeholder for aim image -->
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">External Panels</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <!-- Placeholder for external panels image -->
+                </div>
+                <div class="section-text">
+                    <p>To conceal the internal structure and integrate the wireless charging function for both a cell phone and the spotlight charging zone, six panels were designed.</p>
+                    <p>The structure is covered both inside and out with PET felt panels, produced through thermoforming. This process allowed for the creation of built-in armrests, enhancing comfort during relaxation mode.</p>
+                    <p>These same thermoformed armrests also enable the soft work configuration, featuring female cavities that securely position the table for work.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="configurations-section">
+            <h2 class="section-title">The Configurations</h2>
+            <div class="configurations-container">
+                <div class="configuration-item">
+                    <div class="configuration-image">
+                        <!-- Placeholder for configuration 1 image -->
+                    </div>
+                    <div class="configuration-text">
+                        <h3><span class="configuration-number">01</span>Open Mode</h3>
+                        <p>The product is in its open mode: the panel has not been activated, and the external environment is still visible to the user. This setup allows for an easy transition between moments of relaxation and light work, adapting to the user's needs.</p>
+                    </div>
+                </div>
+                
+                <div class="configuration-item">
+                    <div class="configuration-text">
+                        <h3><span class="configuration-number">02</span>Privacy Mode</h3>
+                        <p>The user has chosen to raise up the sound-absorbing panel. The felt element effectively provides both visual and acoustic privacy, crafting the perfect space for the user to take a break from their activities and enjoy a moment of calm.</p>
+                    </div>
+                    <div class="configuration-image">
+                        <!-- Placeholder for configuration 2 image -->
+                    </div>
+                </div>
+                
+                <div class="configuration-item">
+                    <div class="configuration-image">
+                        <!-- Placeholder for configuration 3 image -->
+                    </div>
+                    <div class="configuration-text">
+                        <h3><span class="configuration-number">03</span>Work Mode</h3>
+                        <p>A specially designed HPL table can be requested from the office or co-working space staff. By rotating the seat 180°, users can create a quieter, distraction-free environment, thanks to the raised privacy panel, making it a perfect space for focused work.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="technical-details">
+            <h2 class="section-title">Technical Details</h2>
+            <div class="technical-content">
+                <p>Otium was designed with a strong focus on sustainability and the end-of-life phase of the product. The chair's structure is made from rotational-molded plastic, with integrated cavities to securely position bio-polyurethane cushions. The entire piece is upholstered with fabric made from recycled PET bottles, sourced from an Italian company.</p>
+                <p>To accommodate a mechanism in the backrest, two cavities are integrated into the chair's structure, where a non-woven fabric membrane is assembled. This membrane helps secure the back cushion, ensuring it stays in place geometrically when the Shuckra system is activated.</p>
+                <p>The internal structure of the chair follows Design for Disassembly principles, making it easy to disassemble components at the end of their lifecycle or when repairs are needed. This approach promotes recyclability and extends the product's durability, contributing to a more sustainable solution.</p>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2 class="section-title">Project Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 1 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 2 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 3 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 4 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 5 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 6 -->
+                </div>
+            </div>
+        </section>
+
+        <div class="next-prev-projects">
+            <div class="prev-project">
+                <i class="fas fa-arrow-left"></i>
+                <div>
+                    <a href="../projects.html" class="project-nav-link">Back to Projects</a>
+                </div>
+            </div>
+            <div class="next-project">
+                <div>
+                    <a href="watson.html" class="project-nav-link">Next Project</a>
+                    <span class="project-nav-name">WATSON</span>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Mattia Fiacco Mazzini</h3>
+                <p>Industrial + Service and UX Designer</p>
+                <p>MSc Integrated Product Design - Politecnico di Milano</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> mattia.fiaccomazzini@mail.polimi.it</p>
+                <p><i class="fas fa-phone"></i> +39 331 563 1616</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024/2025 Mattia Fiacco Mazzini. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

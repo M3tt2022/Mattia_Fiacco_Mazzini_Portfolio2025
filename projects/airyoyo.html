@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIRYO-YO - Mattia Fiacco Mazzini</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to project detail page */
+        .project-hero {
+            height: 70vh;
+            background-color: var(--light-gray);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 5rem;
+        }
+        
+        .project-hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .project-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .meta-item span {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.3rem;
+        }
+        
+        .meta-item strong {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .section-image {
+            height: 400px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .section-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li i {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .configurations-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .configurations-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        
+        .configuration-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .configuration-image {
+            height: 350px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .configuration-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .configuration-text p {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        
+        .configuration-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+        
+        .gallery-section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .next-prev-projects {
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .prev-project, .next-project {
+            display: flex;
+            align-items: center;
+        }
+        
+        .prev-project i, .next-project i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .prev-project i {
+            margin-right: 1rem;
+        }
+        
+        .next-project i {
+            margin-left: 1rem;
+        }
+        
+        .project-nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .project-nav-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .project-nav-name {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.3rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-content,
+            .configuration-item {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-image,
+            .configuration-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .project-meta-info {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .next-prev-projects {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">MFM</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../projects.html" class="active">Projects</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="project-hero-content">
+                <h1>AIRYO-YO</h1>
+                <p>A playful air purifier designed specifically for tiny apartments.</p>
+                <div class="project-meta-info">
+                    <div class="meta-item">
+                        <span>Project Type</span>
+                        <strong>Smart Living Device</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Duration</span>
+                        <strong>5 months</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Year</span>
+                        <strong>2021-2022</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Category</span>
+                        <strong>Industrial Production</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <!-- Placeholder for project overview image -->
+                </div>
+                <div class="section-text">
+                    <h3>The Concept</h3>
+                    <p>Airyo-yo is a playful air purifier designed specifically for tiny apartments. Its distinctive yo-yo-inspired shape adds a touch of fun and irony to the product, while also offering practical functionality.</p>
+                    <p>Designed for industrial production via injection molding, Airyo can be positioned in three different configurations, allowing users to adapt it to the available space in their apartment.</p>
+                    <p>Equipped with both a HEPA filter and an activated carbon filter, Airyo efficiently purifies the air, ensuring a cleaner and healthier environment. Its compact design and versatile placement options make it an ideal solution for small living spaces.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">The Research</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Air pollution in tiny apartments is a growing concern, as smaller spaces can trap pollutants like dust, bacteria, and VOCs, leading to poor air quality. This can cause health issues such as headaches, fatigue, and impaired concentration, which greatly affect everyday well-being.</p>
+                    <p>The aim of this project was to create a versatile air purifier that could adapt to the limited space available in small apartments, while also adding a playful element to the home environment.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Compact design for small spaces</li>
+                        <li><i class="fas fa-check-circle"></i> Multiple positioning options</li>
+                        <li><i class="fas fa-check-circle"></i> HEPA and activated carbon filtration</li>
+                        <li><i class="fas fa-check-circle"></i> Playful yo-yo-inspired design</li>
+                        <li><i class="fas fa-check-circle"></i> Energy-efficient operation</li>
+                    </ul>
+                </div>
+                <div class="section-image">
+                    <!-- Placeholder for research image -->
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Product Details</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <!-- Placeholder for product details image -->
+                </div>
+                <div class="section-text">
+                    <p>Airyo is designed for industrial production via injection molding, making it highly durable and suitable for mass production. Equipped with both a HEPA filter and an activated carbon filter, it efficiently cleans the air by trapping harmful particles and pollutants.</p>
+                    <p>Once powered on, its brushless motor activates the internal fan, drawing polluted air through the bottom shell. The air then passes through the filters, and finally, clean, purified air is released through the upper shell's diffuser, ensuring a healthier indoor environment.</p>
+                    <h3>The Switch</h3>
+                    <p>The switch was intentionally placed on the transformer to enhance convenience. With the non-removable cable keeping the transformer near the power outlet, this setup saves users from needing to reach for the purifier itself, which may be wall-mounted or ceiling-hung. This design choice ensures ease of use, perfectly suited for compact living spaces.</p>
+                    <p>A sleek white LED provides instant visual feedback, lighting up when the device is powered on. This simple yet effective feature keeps the design clean and modern while ensuring users always know the status of their air purifier at a glance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="configurations-section">
+            <h2 class="section-title">The Configurations</h2>
+            <div class="configurations-container">
+                <div class="configuration-item">
+                    <div class="configuration-image">
+                        <!-- Placeholder for configuration 1 image -->
+                    </div>
+                    <div class="configuration-text">
+                        <h3><span class="configuration-number">01</span>Surface Mode</h3>
+                        <p>The surface configuration lets you place Airyo-yo on any flat surface. From a cozy bedside table to a sleek kitchen counter, this setup provides effortless convenience, making clean air just an arm's reach away, wherever you need it most.</p>
+                    </div>
+                </div>
+                
+                <div class="configuration-item">
+                    <div class="configuration-text">
+                        <h3><span class="configuration-number">02</span>Ceiling Mode</h3>
+                        <p>Transform the space by hanging Airyo-yo from the ceiling, turning air purification into a floating design statement. Ideal for homes with limited wall or floor space.</p>
+                    </div>
+                    <div class="configuration-image">
+                        <!-- Placeholder for configuration 2 image -->
+                    </div>
+                </div>
+                
+                <div class="configuration-item">
+                    <div class="configuration-image">
+                        <!-- Placeholder for configuration 3 image -->
+                    </div>
+                    <div class="configuration-text">
+                        <h3><span class="configuration-number">03</span>Wall Mode</h3>
+                        <p>The purifier can be mounted on the wall, where surfaces are limited or if the ceiling height isn't sufficient for the ceiling configuration. This allows the user to maximize available space without compromising functionality.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2 class="section-title">Project Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 1 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 2 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 3 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 4 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 5 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 6 -->
+                </div>
+            </div>
+        </section>
+
+        <div class="next-prev-projects">
+            <div class="prev-project">
+                <i class="fas fa-arrow-left"></i>
+                <div>
+                    <a href="polar.html" class="project-nav-link">Previous Project</a>
+                    <span class="project-nav-name">POLAR</span>
+                </div>
+            </div>
+            <div class="next-project">
+                <div>
+                    <a href="../projects.html" class="project-nav-link">Back to Projects</a>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Mattia Fiacco Mazzini</h3>
+                <p>Industrial + Service and UX Designer</p>
+                <p>MSc Integrated Product Design - Politecnico di Milano</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> mattia.fiaccomazzini@mail.polimi.it</p>
+                <p><i class="fas fa-phone"></i> +39 331 563 1616</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024/2025 Mattia Fiacco Mazzini. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELUFT - Mattia Fiacco Mazzini</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to project detail page */
+        .project-hero {
+            height: 70vh;
+            background-color: var(--light-gray);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 5rem;
+        }
+        
+        .project-hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .project-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .meta-item span {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.3rem;
+        }
+        
+        .meta-item strong {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .section-image {
+            height: 400px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .section-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li i {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .color-palette {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .color-swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+        }
+        
+        .color-code {
+            font-size: 0.9rem;
+            font-family: monospace;
+            color: var(--dark-gray);
+        }
+        
+        .gallery-section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .next-prev-projects {
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .prev-project, .next-project {
+            display: flex;
+            align-items: center;
+        }
+        
+        .prev-project i, .next-project i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .prev-project i {
+            margin-right: 1rem;
+        }
+        
+        .next-project i {
+            margin-left: 1rem;
+        }
+        
+        .project-nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .project-nav-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .project-nav-name {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.3rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .project-meta-info {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .next-prev-projects {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .color-palette {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">MFM</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../projects.html" class="active">Projects</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="project-hero-content">
+                <h1>ELUFT</h1>
+                <p>A micro wind turbine that harnesses wind power generated by cycling to charge devices.</p>
+                <div class="project-meta-info">
+                    <div class="meta-item">
+                        <span>Project Type</span>
+                        <strong>Design for Sport</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Duration</span>
+                        <strong>2 months</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Year</span>
+                        <strong>2024</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Category</span>
+                        <strong>Industrial Production</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <!-- Placeholder for project overview image -->
+                </div>
+                <div class="section-text">
+                    <h3>The Concept</h3>
+                    <p>Eluft is a micro wind turbine that uses the wind power generated by the bike rider to transform it into electrical power. The aim of this device is to allow the user to charge the smartphone when there are no other sources of electricity, using clean energy generated by his own activity.</p>
+                    <p>The energy produced is stored in a powerbank that can be removed and used. Thanks to its aerodynamic shape Eluft optimizes the air flow to generate the highest quantity of electricity even at low speed.</p>
+                    <p>Eluft is designed with minimal aesthetics in order to be easily integrated with the other bike accessories.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">The Power of Wind</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Eluft is a micro wind turbine designed to harness the wind generated by a cyclist's movement, converting it into electrical energy. The primary goal of the device is to enable users to charge their smartphones when other power sources aren't available, relying entirely on clean energy produced by their own activity.</p>
+                    <p>The generated power is stored in a removable power bank, offering convenient access to energy on the go. Eluft's aerodynamic design optimizes airflow, allowing it to produce a significant amount of electricity even at low speeds.</p>
+                    <p>Its sleek, minimalist aesthetics ensure seamless integration with other bike accessories, maintaining a clean and unobtrusive look.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Clean energy generation</li>
+                        <li><i class="fas fa-check-circle"></i> Removable power bank</li>
+                        <li><i class="fas fa-check-circle"></i> Aerodynamic design</li>
+                        <li><i class="fas fa-check-circle"></i> Efficient at low speeds</li>
+                        <li><i class="fas fa-check-circle"></i> Seamless integration with bike accessories</li>
+                    </ul>
+                </div>
+                <div class="section-image">
+                    <!-- Placeholder for power of wind image -->
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Turbine Efficiency</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <!-- Placeholder for turbine efficiency image -->
+                </div>
+                <div class="section-text">
+                    <p>Using 3D printing technology, I created a working prototype of Eluft, enabling us to thoroughly test its functionality. The prototype was printed using PLA, a biodegradable plastic, and afterward, we carefully sanded it to achieve a smooth surface. Once the surface was prepared, we spray-painted the prototype to give it a clean, polished finish.</p>
+                    <p>The Archimedes turbine was chosen as it has proven to be the most efficient on the market for mini wind turbines. According to studies on turbine efficiency, it was found that the Archimedes turbine guarantees an efficiency of 30.3% even at low speeds (5 m/s wind).</p>
+                    <p>To ensure that the turbine can have greater power and generate a higher amount of energy, we utilized the Venturi theorem. It is possible to reach 10% of the power bank's charge in about 5 hours. The values obtained are certainly not high, but they are extremely promising.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Details and CMF</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Eluft's color choices represent a distinctive selection. Midnight blue for the external shell of the turbine is an elegant and neutral color that can easily complement all the existing chromatic variations in bicycles, while also imparting Eluft with a decisive character.</p>
+                    <p>For the turbine and mount, I opted for brighter colors such as Adventure Green, Off-road Brown, and Dynamic Yellow, directly echoing the sports gear that typically accompanies users on their adventures.</p>
+                    <p>In designing the Eluft logo, I aimed to convey the following key concepts: Speed, Dynamism, Sport, and Reliability.</p>
+                    <p>I also designed an ideal packaging for the project that contains: Eluft (pre-assembled), Bike mount, Powerbank, and USB cable.</p>
+                    
+                    <div class="color-palette">
+                        <div class="color-item">
+                            <div class="color-swatch" style="background-color: #141e32;"></div>
+                            <span class="color-code">#141e32</span>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background-color: #b9cdba;"></div>
+                            <span class="color-code">#b9cdba</span>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background-color: #fbc060;"></div>
+                            <span class="color-code">#fbc060</span>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background-color: #b07156;"></div>
+                            <span class="color-code">#b07156</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-image">
+                    <!-- Placeholder for details and CMF image -->
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2 class="section-title">Project Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 1 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 2 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 3 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 4 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 5 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 6 -->
+                </div>
+            </div>
+        </section>
+
+        <div class="next-prev-projects">
+            <div class="prev-project">
+                <i class="fas fa-arrow-left"></i>
+                <div>
+                    <a href="watson.html" class="project-nav-link">Previous Project</a>
+                    <span class="project-nav-name">WATSON</span>
+                </div>
+            </div>
+            <div class="next-project">
+                <div>
+                    <a href="polar.html" class="project-nav-link">Next Project</a>
+                    <span class="project-nav-name">POLAR</span>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Mattia Fiacco Mazzini</h3>
+                <p>Industrial + Service and UX Designer</p>
+                <p>MSc Integrated Product Design - Politecnico di Milano</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> mattia.fiaccomazzini@mail.polimi.it</p>
+                <p><i class="fas fa-phone"></i> +39 331 563 1616</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024/2025 Mattia Fiacco Mazzini. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

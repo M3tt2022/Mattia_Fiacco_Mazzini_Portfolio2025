@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLAR - Mattia Fiacco Mazzini</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to project detail page */
+        .project-hero {
+            height: 70vh;
+            background-color: var(--light-gray);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 5rem;
+        }
+        
+        .project-hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .project-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .meta-item span {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.3rem;
+        }
+        
+        .meta-item strong {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .section-image {
+            height: 400px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .section-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li i {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .gallery-section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .next-prev-projects {
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .prev-project, .next-project {
+            display: flex;
+            align-items: center;
+        }
+        
+        .prev-project i, .next-project i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .prev-project i {
+            margin-right: 1rem;
+        }
+        
+        .next-project i {
+            margin-left: 1rem;
+        }
+        
+        .project-nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .project-nav-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .project-nav-name {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.3rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .project-meta-info {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .next-prev-projects {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">MFM</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../projects.html" class="active">Projects</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="project-hero-content">
+                <h1>POLAR</h1>
+                <p>A smart, wearable ARTVA device designed to improve snow safety.</p>
+                <div class="project-meta-info">
+                    <div class="meta-item">
+                        <span>Project Type</span>
+                        <strong>Product-Service</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Duration</span>
+                        <strong>4 months</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Year</span>
+                        <strong>2023-2024</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Category</span>
+                        <strong>Design for Sport</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <!-- Placeholder for project overview image -->
+                </div>
+                <div class="section-text">
+                    <h3>The Concept</h3>
+                    <p>Polar is a smart, wearable ARTVA device designed to improve snow safety. It consists of two parts: the main device, completely redesigned for enhanced usability, and a high-visibility outer band that doubles as a protective cover.</p>
+                    <p>Polar raises awareness about snow safety by making ARTVA more accessible and user-friendly. The device was developed using HP MJF 3D printing technology, allowing for customizable and complex geometries that enhance durability and flexibility.</p>
+                    <p>Polar promotes sustainability by enabling on-demand production, reducing waste, and supporting a more eco-friendly manufacturing approach.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Safety on Snow</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Polar is a smart, wearable ARTVA designed to enhance safety while also raising awareness about avalanche risks. Avalanches are a growing danger in snow-covered environments, causing over 150 deaths globally each year.</p>
+                    <p>The combination of unpredictable weather patterns and the rising popularity of off-piste activities has made avalanche preparedness more critical than ever. Snow conditions can change rapidly, and even experienced skiers and mountaineers can be caught off guard.</p>
+                    <p>An ARTVA (Avalanche Rescue Transceiver) locates individuals buried under snow during an avalanche. Its use will soon be mandatory in many high-risk areas, as it greatly enhances survival chances during rescue operations.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Enhanced snow safety</li>
+                        <li><i class="fas fa-check-circle"></i> Wearable design</li>
+                        <li><i class="fas fa-check-circle"></i> High visibility</li>
+                        <li><i class="fas fa-check-circle"></i> User-friendly interface</li>
+                        <li><i class="fas fa-check-circle"></i> Sustainable production</li>
+                    </ul>
+                </div>
+                <div class="section-image">
+                    <!-- Placeholder for safety on snow image -->
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Re-Design & Prototype</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <!-- Placeholder for re-design image -->
+                </div>
+                <div class="section-text">
+                    <p>By incorporating a high-visibility outer band, I aim to make the device not just functional but also eye-catching. This visibility encourages greater interest in avalanche safety and helps foster a culture of preparedness among outdoor enthusiasts.</p>
+                    <p>The Polar ARTVA features a fully redesigned main unit for ease of use and is built with HP MJF 3D printing technology, offering durability and flexibility, along with sustainable, on-demand production.</p>
+                    <h3>Technical Details</h3>
+                    <p>The MJF technology allows for the creation of custom-made wristbands for each user, offering the option to personalize not only the text on the band but also the diameter according to the arm's circumference.</p>
+                    <p>The device is fully disassemblable, allowing easy replacement of electronic components. POLAR is also waterproof, thanks to a high-quality sealing gasket, ensuring durability and maintainability in extreme conditions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Connection Point + Service</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <h3>Workshop</h3>
+                    <p>The service accompanying Polar consists of a series of workshops held on snow-covered terrain and ski slopes. These workshops focus on increasing awareness of snow safety, practical hands-on sessions, and training on how to properly use the ARTVA device.</p>
+                    <p>Additionally, there are sports activities with rewards, encouraging participants to actively engage with and apply their knowledge of ARTVA use in real-world scenarios.</p>
+                    <h3>App</h3>
+                    <p>Through the design of a dedicated app, users can further customize the length and color of their ARTVA device, ensuring a tailored fit and style that suits their individual needs.</p>
+                </div>
+                <div class="section-image">
+                    <!-- Placeholder for connection point image -->
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2 class="section-title">Project Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 1 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 2 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 3 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 4 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 5 -->
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder for gallery image 6 -->
+                </div>
+            </div>
+        </section>
+
+        <div class="next-prev-projects">
+            <div class="prev-project">
+                <i class="fas fa-arrow-left"></i>
+                <div>
+                    <a href="eluft.html" class="project-nav-link">Previous Project</a>
+                    <span class="project-nav-name">ELUFT</span>
+                </div>
+            </div>
+            <div class="next-project">
+                <div>
+                    <a href="airyoyo.html" class="project-nav-link">Next Project</a>
+                    <span class="project-nav-name">AIRYO-YO</span>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Mattia Fiacco Mazzini</h3>
+                <p>Industrial + Service and UX Designer</p>
+                <p>MSc Integrated Product Design - Politecnico di Milano</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> mattia.fiaccomazzini@mail.polimi.it</p>
+                <p><i class="fas fa-phone"></i> +39 331 563 1616</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024/2025 Mattia Fiacco Mazzini. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

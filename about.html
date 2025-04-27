@@ -1,0 +1,498 @@
+ <!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Mattia Fiacco Mazzini</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to about page */
+        .about-section {
+            padding: 8rem 0 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-section-title {
+            padding-left: 5%;
+            margin-bottom: 2rem;
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+            padding: 0 5%;
+        }
+        
+        .about-image {
+            height: 500px;
+            background-color: var(--light-gray);
+            border-radius: 8px; /* Bordi più arrotondati */
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            text-align: left;
+        }
+        
+        .education-section,
+        .skills-section,
+        .experience-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .education-section {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--medium-gray);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            top: 15px;
+            right: -10px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--background-color);
+            border-radius: 8px; /* Bordi più arrotondati */
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+        
+        .timeline-content p {
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            background-color: var(--background-color);
+            border-radius: 8px; /* Bordi più arrotondati */
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-list li i {
+            color: var(--accent-color);
+            margin-right: 0.8rem;
+        }
+        
+        .language-level {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.3rem;
+        }
+        
+        .level-indicator {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .level-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--medium-gray);
+        }
+        
+        .level-dot.filled {
+            background-color: var(--accent-color);
+        }
+        
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .interest-tag {
+            background-color: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 8px; /* Bordi più arrotondati, coerenti con gli altri elementi */
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+                right: auto;
+            }
+            
+            .timeline-item:nth-child(even)::after {
+                left: 21px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">MFM</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-section">
+            <div class="about-section-title">
+                <h1 class="bicolor-title">About <span>Me</span></h1>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <a href="#" class="btn">
+                        <i class="fas fa-download"></i> Download my CV
+                    </a>
+                    <a href="MATTIA FIACCO MAZZINI_PORTFOLIO for CCS DETROIT (MI).pdf" class="btn" download>
+                        <i class="fas fa-download"></i> Download my PORTFOLIO
+                    </a>
+                </div>
+            </div>
+            <div class="about-container">
+                <div class="about-image">
+                    <!-- Placeholder for profile image -->
+                </div>
+                <div class="about-content">
+                    <p>I am a student of Integrated Product Design at Politecnico di Milano, born and raised in Milan.</p>
+                    <p>I consider myself a young man with a strong creative approach, enriched by a high level of curiosity which, in my conception of design, is essential to understand and satisfy users' needs.</p>
+                    <p>I am characterized by two approaches: a highly creative one that I explored and defined through my high school background, and a search for the functionality of the things that surround us, an aspect that I have been able to deepen during these years at the Politecnico di Milano.</p>
+                    <p>My approach in doing design is to always challenge myself to find the perfect balance between design rationality and the formal aesthetics of products.</p>
+                    <p>I am interested in Strategic and Service Design, scenario analysis, Concept Design and all phases of product development and engineering.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="education-section">
+            <h2 class="section-title bicolor-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">gen 2025 - giu 2025</div>
+                        <h3>Exchange semester</h3>
+                        <h4>User Experience Design (MFA)</h4>
+                        <p>College for Creative Studies</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023-2025</div>
+                        <h3>Master's Degree</h3>
+                        <h4>Integrated Product Design (MSc)</h4>
+                        <p>Politecnico di Milano</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020-2023</div>
+                        <h3>Bachelor's Degree</h3>
+                        <h4>Industrial Product Design (BSc)</h4>
+                        <p>Politecnico di Milano</p>
+                        <p>Grade: 108/110</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2015-2020</div>
+                        <h3>Artistic Maturity</h3>
+                        <h4>Figurative Arts</h4>
+                        <p>Liceo artistico di Brera, Milan</p>
+                        <p>Grade: 100/100</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="experience-section">
+            <h2 class="section-title bicolor-title">Work <span>Experience</span></h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Nov 2023 - Feb 2024</div>
+                        <h3>Product and Service Designer</h3>
+                        <h4>HP 3D printing division</h4>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sept 2023 - May 2024</div>
+                        <h3>Strategic and Service Designer</h3>
+                        <h4>Xiaomi Italia · Stage</h4>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sept 2023 - Nov 2023</div>
+                        <h3>Kinder Toys Workshop 2023</h3>
+                        <h4>Ferrero · Stage</h4>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Gen 2023 - Sept 2023</div>
+                        <h3>Product Designer</h3>
+                        <h4>Cassina · thesis development</h4>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sept 2022 - Nov 2022</div>
+                        <h3>Workshop Design e Sostenibilità</h3>
+                        <h4>Cassina</h4>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jun 2023 - Jul 2023</div>
+                        <h3>Product Designer</h3>
+                        <h4>Panasonic Corporation and Suzuki Kazunari Studio</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills-section">
+            <h2 class="section-title bicolor-title">Skills & <span>Interests</span></h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Design Skills</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check-circle"></i> Concept design</li>
+                        <li><i class="fas fa-check-circle"></i> Service System design</li>
+                        <li><i class="fas fa-check-circle"></i> User Experience Design</li>
+                        <li><i class="fas fa-check-circle"></i> User Interface Design</li>
+                        <li><i class="fas fa-check-circle"></i> Environmental Sustainability</li>
+                        <li><i class="fas fa-check-circle"></i> 3D printing</li>
+                        <li><i class="fas fa-check-circle"></i> Digital sketch</li>
+                        <li><i class="fas fa-check-circle"></i> Design Futures</li>
+                        <li><i class="fas fa-check-circle"></i> Design thinking</li>
+                        <li><i class="fas fa-check-circle"></i> Strategic design</li>
+                        <li><i class="fas fa-check-circle"></i> Intelligenza Artificiale</li>
+                        <li><i class="fas fa-check-circle"></i> Sound Design</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Software</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check-circle"></i> Adobe Suite (Photoshop, Illustrator, InDesign)</li>
+                        <li><i class="fas fa-check-circle"></i> Autodesk Suite (Inventor PRO, Fusion 360, Alias)</li>
+                        <li><i class="fas fa-check-circle"></i> Luxion Keyshot 2024</li>
+                        <li><i class="fas fa-check-circle"></i> Figma</li>
+                        <li><i class="fas fa-check-circle"></i> Miro</li>
+                        <li><i class="fas fa-check-circle"></i> Rhino</li>
+                        <li><i class="fas fa-check-circle"></i> nTop</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <span>Italian (Native speaker)</span>
+                            <div class="language-level">
+                                <span>C2</span>
+                                <div class="level-indicator">
+                                    <div class="level-dot filled"></div>
+                                    <div class="level-dot filled"></div>
+                                    <div class="level-dot filled"></div>
+                                    <div class="level-dot filled"></div>
+                                    <div class="level-dot filled"></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <span>English (Duolingo English Test 115/160, TOEIC Listening & Reading 840/990)</span>
+                            <div class="language-level">
+                                <span>C1</span>
+                                <div class="level-indicator">
+                                    <div class="level-dot filled"></div>
+                                    <div class="level-dot filled"></div>
+                                    <div class="level-dot filled"></div>
+                                    <div class="level-dot filled"></div>
+                                    <div class="level-dot"></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <span>Spanish (3 years of middle school study)</span>
+                            <div class="language-level">
+                                <span>A2</span>
+                                <div class="level-indicator">
+                                    <div class="level-dot filled"></div>
+                                    <div class="level-dot"></div>
+                                    <div class="level-dot"></div>
+                                    <div class="level-dot"></div>
+                                    <div class="level-dot"></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Personal Interests</h3>
+                    <div class="interests">
+                        <span class="interest-tag">Art (Drawing and Painting)</span>
+                        <span class="interest-tag">Music</span>
+                        <span class="interest-tag">Photography</span>
+                        <span class="interest-tag">Cinematography</span>
+                        <span class="interest-tag">Listen to Podcast</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Mattia Fiacco Mazzini</h3>
+                <p>Industrial Product + Service Design</p>
+                <p>MSc Integrated Product Design - Politecnico di Milano</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> mattia.fiaccomazzini@mail.polimi.it</p>
+                <p><i class="fas fa-phone"></i> +39 331 563 1616</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Mattia Fiacco Mazzini. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
