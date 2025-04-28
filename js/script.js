@@ -1,4 +1,106 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Animate only the name "Mattia" on page load with enhanced effect
+    const animateName = () => {
+        // Get the span containing "Mattia"
+        const nameSpan = document.querySelector('.hero .bicolor-title span');
+        
+        if (nameSpan) {
+            const name = nameSpan.textContent;
+            nameSpan.textContent = ''; // Clear the original text
+            
+            // Create a span for each letter and add it to the DOM
+            for (let i = 0; i < name.length; i++) {
+                const letterSpan = document.createElement('span');
+                letterSpan.className = 'animated-letter';
+                letterSpan.textContent = name[i];
+                nameSpan.appendChild(letterSpan);
+            }
+            
+            // Animate each letter with a delay
+            const letters = nameSpan.querySelectorAll('.animated-letter');
+            letters.forEach((letter, index) => {
+                setTimeout(() => {
+                    letter.classList.add('animate');
+                }, 150 * index); // 150ms delay between each letter
+            });
+        }
+    };
+    
+    // Animate hero section elements (except education info and button)
+    const animateHero = () => {
+        // Animate only the job title (h2)
+        setTimeout(() => {
+            const heroH2 = document.querySelector('.hero h2');
+            if (heroH2) {
+                heroH2.classList.add('fade-in-up');
+                heroH2.classList.add('animate');
+            }
+            
+            // Add floating animation to hero image
+            setTimeout(() => {
+                const heroImage = document.querySelector('.hero-image');
+                if (heroImage) {
+                    heroImage.classList.add('float');
+                }
+            }, 500);
+        }, 1000); // Start after name animation has begun
+    };
+    
+    // Animate project cards when they come into view
+    const animateProjectCards = () => {
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        if (projectCards.length > 0) {
+            projectCards.forEach((card, index) => {
+                // Initially set opacity to 0
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                // Add a delay based on the card index
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 300 + (index * 150));
+            });
+        }
+    };
+    
+    // Animate section titles when they come into view
+    const animateSectionTitles = () => {
+        const titles = document.querySelectorAll('section h2');
+        
+        titles.forEach(title => {
+            // Check if the title is already in the viewport
+            const rect = title.getBoundingClientRect();
+            const isInViewport = rect.top <= window.innerHeight && rect.bottom >= 0;
+            
+            if (isInViewport) {
+                title.classList.add('scale-in');
+                title.classList.add('animate');
+            } else {
+                // Set up the intersection observer for titles not yet in view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('scale-in');
+                            entry.target.classList.add('animate');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                observer.observe(title);
+            }
+        });
+    };
+    
+    // Run all animations
+    animateName();
+    animateHero();
+    animateProjectCards();
+    animateSectionTitles();
+    
     // Mobile Navigation Toggle
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
@@ -66,23 +168,64 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update active nav link on scroll
     window.addEventListener('scroll', updateActiveNavLink);
     
-    // Reveal animations on scroll
-    const revealElements = document.querySelectorAll('.reveal');
-    
-    function revealOnScroll() {
-        const windowHeight = window.innerHeight;
-        const revealPoint = 150;
+    // Enhanced reveal animations on scroll with IntersectionObserver
+    function setupScrollAnimations() {
+        // Elements to animate on scroll
+        const aboutSection = document.querySelector('.about-preview');
+        const aboutContent = document.querySelector('.about-content');
+        const projectCards = document.querySelectorAll('.project-card');
+        const footerSections = document.querySelectorAll('.footer-info, .footer-contact, .footer-credits');
         
-        revealElements.forEach(element => {
-            const revealTop = element.getBoundingClientRect().top;
-            
-            if (revealTop < windowHeight - revealPoint) {
-                element.classList.add('revealed');
-            }
-        });
+        // Create intersection observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Different animations based on element type
+                    if (entry.target.classList.contains('about-content')) {
+                        entry.target.style.opacity = '0';
+                        entry.target.style.transform = 'translateY(30px)';
+                        entry.target.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                        
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, 100);
+                    } 
+                    else if (entry.target.classList.contains('footer-info') || 
+                             entry.target.classList.contains('footer-contact') ||
+                             entry.target.classList.contains('footer-credits')) {
+                        entry.target.classList.add('fade-in-up');
+                        entry.target.classList.add('animate');
+                    }
+                    
+                    // Unobserve after animation
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        // Observe elements
+        if (aboutContent) observer.observe(aboutContent);
+        footerSections.forEach(section => observer.observe(section));
+        
+        // Add parallax effect to about section background
+        if (aboutSection) {
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.pageYOffset;
+                const aboutSectionTop = aboutSection.offsetTop;
+                const distance = scrollPosition - aboutSectionTop;
+                
+                if (distance > -window.innerHeight && distance < aboutSection.offsetHeight) {
+                    // Move the pseudo-elements for parallax effect
+                    const moveAmount = distance * 0.05;
+                    aboutSection.style.setProperty('--parallax-offset', `${moveAmount}px`);
+                }
+            });
+        }
     }
     
-    window.addEventListener('scroll', revealOnScroll);
+    // Initialize scroll animations
+    setupScrollAnimations();
     
     // Initialize any sliders or carousels if needed
     // This is a placeholder for future functionality
