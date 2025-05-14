@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARMONIA - Mattia Fiacco Mazzini</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to project detail page */
+        .project-hero {
+            height: 70vh;
+            background-color: var(--light-gray);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 5rem;
+        }
+        
+        .project-hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .project-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .meta-item span {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.3rem;
+        }
+        
+        .meta-item strong {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .section-image {
+            height: 400px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .section-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li i {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .gallery-section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .next-prev-projects {
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .prev-project, .next-project {
+            display: flex;
+            align-items: center;
+        }
+        
+        .prev-project i, .next-project i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .prev-project i {
+            margin-right: 1rem;
+        }
+        
+        .next-project i {
+            margin-left: 1rem;
+        }
+        
+        .project-nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .project-nav-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .project-nav-name {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.3rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .project-meta-info {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .next-prev-projects {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">MFM</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../projects.html" class="active">Projects</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero" style="background-image: url('../Immagini portfolio/Harmonia/Copertina.png'); background-size: cover; background-position: center;">
+            <div class="project-hero-content" style="background-color: rgba(255, 255, 255, 0.8); padding: 2rem; border-radius: 10px;">
+                <h1>HARMONIA</h1>
+                <p>A smart support ecosystem for elderly care designed to reduce social isolation.</p>
+                <div class="project-meta-info">
+                    <div class="meta-item">
+                        <span>Project Type</span>
+                        <strong>Healthcare</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Duration</span>
+                        <strong>2025</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Year</span>
+                        <strong>2025</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Category</span>
+                        <strong>UI e UX</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Harmonia/56.png" alt="Harmonia Project Overview" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="section-text">
+                    <h3>The Concept</h3>
+                    <p>Harmonia is a smart support ecosystem designed to address the growing challenge of social isolation among elderly individuals in Italy. This project explores the design process behind a digital solution aimed at reducing social isolation and enhancing the quality of life for elderly people living alone.</p>
+                    <p>The aim of this project is to design an empathetic and accessible system that enhances autonomy and emotional wellbeing for elderly people living alone. Through a multi-interface ecosystem, Harmonia improves emotional wellbeing and independence by connecting users with caregivers, community services, and social opportunities.</p>
+                    <p>This project was developed at the College for Creative Studies under the guidance of Professor Frances Sun, with Mattia Fiacco Mazzini as an exchange student.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Problem Statement</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>The elderly population in Italy faces several significant challenges:</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> <strong>Increasing social isolation</strong> among the elderly in Italy</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Difficulties</strong> in using modern technology</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Anxiety</strong> related to medical emergencies or daily forgetfulness</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Caregivers</strong> face challenges in remotely monitoring their elderly relatives</li>
+                    </ul>
+                    <p>By 2030, over 28% of seniors in Italy will live alone, and social isolation is significantly impacting their mental and physical well-being. In Italy, seniors over 65 make up 38% of all suicides, highlighting the severity of the issue.</p>
+                </div>
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Harmonia/57.png" alt="Harmonia Problem Statement" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">User Research & Insights</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Harmonia/58.png" alt="Harmonia User Research" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="section-text">
+                    <p>In Europe, millions of elderly people face loneliness every day, profoundly impacting their quality of life and well-being. Our research identified several key challenges:</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> <strong>Fear</strong> of being forgotten</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Difficulty understanding</strong> complex technology</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Lack</strong> of meaningful daily interactions</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Technology has the potential</strong> to bridge this gap, but current solutions are not accessible to all</li>
+                    </ul>
+                    <p>Users were interviewed remotely through various contacts in Italy, offering diverse insights into the challenges and needs. The target demographic is elderly individuals over 65 years old who live alone or experience social isolation, often lacking meaningful connections or opportunities to engage with their community.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">User Personas</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <h3>Maria Rossi</h3>
+                    <p>Retired and widowed, Maria spends 4-5 days a week completely alone. She prefers simple, repetitive routines and trusts only essential and familiar technology. She has a family that cares for her but is often busy.</p>
+                    <p><strong>Frustrations:</strong></p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-times-circle"></i> Isolation: Spends most days alone, with few social interactions</li>
+                        <li><i class="fas fa-times-circle"></i> Limited social opportunities: Struggles to find local events that match her interests</li>
+                        <li><i class="fas fa-times-circle"></i> Technology intimidation: Overwhelmed by complex interfaces</li>
+                        <li><i class="fas fa-times-circle"></i> Dependence on family: Relies on her children for tech support</li>
+                    </ul>
+                    <p><strong>Needs:</strong></p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Social Connection: Wants to feel less isolated</li>
+                        <li><i class="fas fa-check-circle"></i> User-Friendly Tools: Needs intuitive technology</li>
+                        <li><i class="fas fa-check-circle"></i> Family Support: Caregivers should be able to remotely assist</li>
+                        <li><i class="fas fa-check-circle"></i> Encouragement to Stay Active: Gentle reminders to maintain an active lifestyle</li>
+                    </ul>
+                </div>
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Harmonia/personas.png" alt="Harmonia User Personas" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">The Solution</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Harmonia/the solution.png" alt="Harmonia Solution" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="section-text">
+                    <h3>Introducing the Smart Totem</h3>
+                    <p>Harmonia is a comprehensive solution that includes:</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> A home device that integrates social interactions, event recommendations, and reminders to keep seniors engaged</li>
+                        <li><i class="fas fa-check-circle"></i> Seamlessly connected with a mobile app for caregivers</li>
+                        <li><i class="fas fa-check-circle"></i> A simplified interface for easy access to reminders and social tools for seniors</li>
+                        <li><i class="fas fa-check-circle"></i> A dashboard for caregivers to manage the device, input reminders, and suggest activities</li>
+                    </ul>
+                    <p>The Harmonia system connects elderly users, caregivers, and public services through a centralized platform, enabling real-time communication, activity suggestions, and emergency support via home totems, smartwatches, and mobile apps for both family members and social workers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Design Process</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>The design process for Harmonia followed a user-centered approach:</p>
+                    <ol>
+                        <li>
+                            <strong>Research & Problem Definition:</strong>
+                            <p>Extensive research into the challenges faced by elderly individuals in Italy, including social isolation statistics and technology adoption barriers.</p>
+                        </li>
+                        <li>
+                            <strong>User Personas & Needs Analysis:</strong>
+                            <p>Development of detailed personas like Maria Rossi to understand the specific needs, frustrations, and goals of our target users.</p>
+                        </li>
+                        <li>
+                            <strong>Ideation & Concept Development:</strong>
+                            <p>Exploration of various solutions, leading to the multi-interface ecosystem concept that addresses both elderly users and caregivers.</p>
+                        </li>
+                        <li>
+                            <strong>Low-Fidelity Prototyping:</strong>
+                            <p>Creation of initial sketches and wireframes to visualize the user experience for both the elderly user and caregivers.</p>
+                        </li>
+                        <li>
+                            <strong>High-Fidelity UI Design:</strong>
+                            <p>Development of detailed interface designs with a focus on simplicity, accessibility, and intuitive interaction.</p>
+                        </li>
+                    </ol>
+                </div>
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Harmonia/59.png" alt="Harmonia Design Process" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2 class="section-title">Project Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/56.png" alt="Harmonia Gallery 1" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/57.png" alt="Harmonia Gallery 2" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/58.png" alt="Harmonia Gallery 3" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/59.png" alt="Harmonia Gallery 4" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/60.png" alt="Harmonia Gallery 5" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/61.png" alt="Harmonia Gallery 6" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/62.png" alt="Harmonia Gallery 7" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/63.png" alt="Harmonia Gallery 8" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/64.png" alt="Harmonia Gallery 9" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/65.png" alt="Harmonia Gallery 10" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/66.png" alt="Harmonia Gallery 11" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/67.png" alt="Harmonia Gallery 12" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/68.png" alt="Harmonia Gallery 13" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Harmonia/69.png" alt="Harmonia Gallery 14" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </section>
+
+        <div class="next-prev-projects">
+            <div class="prev-project">
+                <i class="fas fa-arrow-left"></i>
+                <div>
+                    <a href="airyoyo.html" class="project-nav-link">Previous Project</a>
+                    <span class="project-nav-name">AIRYO-YO</span>
+                </div>
+            </div>
+            <div class="next-project">
+                <div>
+                    <a href="otium.html" class="project-nav-link">Next Project</a>
+                    <span class="project-nav-name">OTIUM</span>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Mattia Fiacco Mazzini</h3>
+                <p>Industrial + Service and UX Designer</p>
+                <p>MSc Integrated Product Design - Politecnico di Milano</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> mattia.fiaccomazzini@mail.polimi.it</p>
+                <p><i class="fas fa-phone"></i> +39 331 563 1616</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024/2025 Mattia Fiacco Mazzini. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

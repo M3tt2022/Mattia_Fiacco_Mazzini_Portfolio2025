@@ -305,4 +305,98 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Lightbox functionality for project galleries
+    function setupLightbox() {
+        // Create lightbox elements
+        const lightboxHTML = `
+            <div class="lightbox">
+                <div class="lightbox-content">
+                    <img src="" alt="Lightbox Image" class="lightbox-image">
+                    <span class="lightbox-close">&times;</span>
+                    <span class="lightbox-prev">&lt;</span>
+                    <span class="lightbox-next">&gt;</span>
+                </div>
+            </div>
+        `;
+        
+        // Add lightbox to the body
+        document.body.insertAdjacentHTML('beforeend', lightboxHTML);
+        
+        // Get lightbox elements
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImage = document.querySelector('.lightbox-image');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.querySelector('.lightbox-prev');
+        const lightboxNext = document.querySelector('.lightbox-next');
+        
+        // Get all gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        let currentIndex = 0;
+        
+        // Function to open lightbox
+        function openLightbox(index) {
+            currentIndex = index;
+            const imgSrc = galleryItems[index].src;
+            lightboxImage.src = imgSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+        }
+        
+        // Function to close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+        
+        // Function to navigate to previous image
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            lightboxImage.src = galleryItems[currentIndex].src;
+        }
+        
+        // Function to navigate to next image
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % galleryItems.length;
+            lightboxImage.src = galleryItems[currentIndex].src;
+        }
+        
+        // Add click event to gallery items
+        galleryItems.forEach((item, index) => {
+            item.parentElement.addEventListener('click', (e) => {
+                e.preventDefault();
+                openLightbox(index);
+            });
+        });
+        
+        // Add click event to close button
+        lightboxClose.addEventListener('click', closeLightbox);
+        
+        // Add click events to navigation buttons
+        lightboxPrev.addEventListener('click', prevImage);
+        lightboxNext.addEventListener('click', nextImage);
+        
+        // Close lightbox when clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+    }
+    
+    // Initialize lightbox
+    setupLightbox();
 });

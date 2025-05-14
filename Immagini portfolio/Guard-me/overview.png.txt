@@ -1,0 +1,2 @@
+This is a placeholder for the overview.png image for the Guard-me project.
+The actual image should be a PNG file showing an overview of the Guard-me wearable device.

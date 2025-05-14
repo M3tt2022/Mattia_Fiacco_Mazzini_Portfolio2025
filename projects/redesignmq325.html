@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redesign MQ325 - Mattia Fiacco Mazzini</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to project detail page */
+        .project-hero {
+            height: 70vh;
+            background-color: var(--light-gray);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 5rem;
+        }
+        
+        .project-hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .project-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .meta-item span {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.3rem;
+        }
+        
+        .meta-item strong {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .section-image {
+            height: 400px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .section-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li i {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .gallery-section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .next-prev-projects {
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .prev-project, .next-project {
+            display: flex;
+            align-items: center;
+        }
+        
+        .prev-project i, .next-project i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .prev-project i {
+            margin-right: 1rem;
+        }
+        
+        .next-project i {
+            margin-left: 1rem;
+        }
+        
+        .project-nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .project-nav-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .project-nav-name {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.3rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .project-meta-info {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .next-prev-projects {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">MFM</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../projects.html" class="active">Projects</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+<section class="project-hero" style="background-image: url('../Immagini portfolio/Redesign MQ325/copertina.png'); background-size: cover; background-position: center;">
+            <div class="project-hero-content" style="background-color: rgba(255, 255, 255, 0.8); padding: 2rem; border-radius: 10px;">
+                <h1>Redesign MQ325</h1>
+                <p>A sustainable redesign of the Braun MQ325 hand blender focused on environmental impact reduction.</p>
+                <div class="project-meta-info">
+                    <div class="meta-item">
+                        <span>Project Type</span>
+                        <strong>Sustainable Design</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Duration</span>
+                        <strong>4 weeks</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Year</span>
+                        <strong>2023</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Category</span>
+                        <strong>Consumer Products</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Redesign MQ325/Mockup01.jpg" alt="MQ325 Overview" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="section-text">
+                    <h3>The Concept</h3>
+                    <p>This project focused on redesigning the Braun MQ325 Multiquick hand blender with a strong emphasis on environmental sustainability. The goal was to analyze the product's lifecycle and identify opportunities for improvement in terms of material usage, disassembly, and overall environmental impact.</p>
+                    <p>The project was conducted as part of the "Design for Environmental Sustainability" course at Politecnico di Milano, under the guidance of Professors Carlo Proserpio and Valentina Rognoli.</p>
+                    <p>Working in a team with Marialucia De Cagna, Paolo Lunardon, and Martina Ricca, we conducted a Life Cycle Analysis (LCA) of the original product and developed a comprehensive redesign strategy focused on three key areas: materials, assembly, and end-of-life considerations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">The Research</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Our research began with a thorough disassembly and analysis of the Braun MQ325 hand blender. This process revealed several challenges in the product's design that impacted its environmental footprint:</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> <strong>Difficult disassembly</strong> due to numerous components that were welded together and could not be individually recycled</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Co-stamping issues</strong> that made disposal difficult</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Multiple plastic types</strong> that complicated recycling processes</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Welded components</strong> that prevented easy repair or part replacement</li>
+                    </ul>
+                    <p>Through reverse-engineering and detailed analysis, we identified that the upper unit of the blender was the element with the greatest environmental impact, making it the primary focus for our redesign efforts.</p>
+                </div>
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Redesign MQ325/esploso scocche.66.png" alt="MQ325 Components" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Design Strategy</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Redesign MQ325/prodotto finito (1).jpg" alt="Design Strategy" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="section-text">
+                    <p>Our redesign strategy addressed three key problematic areas:</p>
+                    <ol>
+                        <li>
+                            <strong>Co-stamping and material issues:</strong>
+                            <p>We replaced fossil elastomers with bio-based alternatives (specifically Terraprene by FKuR) to improve the product's lifecycle. This change not only conserves limited fossil raw materials but also reduces CO2 emissions, with one ton of Green TPE capable of capturing up to 3.09 tons of CO2 from the atmosphere.</p>
+                        </li>
+                        <li>
+                            <strong>Multiple plastic types:</strong>
+                            <p>We standardized the materials of the upper unit, eliminating PP and redesigning all components in ABS. This monomaterial approach offers significant performance advantages: it's easy to print, impact-resistant, and allows for high-quality surface finishes, while also simplifying end-of-life recycling.</p>
+                        </li>
+                        <li>
+                            <strong>Welded components:</strong>
+                            <p>We redesigned the assembly to facilitate disassembly, implementing a two-way snapfit system for motor replacement. This approach enables easier upgradeability and replacement of the engine, extending the product's useful life and reducing waste.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Sustainable Materials</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <h3>Bio-Based Elastomers</h3>
+                    <p>A key innovation in our redesign was the replacement of traditional rubber materials with biobased terraprene. This change involved a complete redesign of the buttons themselves to minimize the amount of material required, aligning with sustainability and environmental impact reduction goals.</p>
+                    <p>The adoption of this biobased thermoplastic elastomer offers significant advantages:</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-leaf"></i> Conservation of increasingly limited fossil raw materials</li>
+                        <li><i class="fas fa-cloud-sun"></i> Reduction of CO2 emissions</li>
+                        <li><i class="fas fa-recycle"></i> Improved end-of-life recyclability</li>
+                        <li><i class="fas fa-hand-paper"></i> Maintained tactile quality and user experience</li>
+                    </ul>
+                </div>
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Redesign MQ325/tasto prima e dopo.140.png" alt="Sustainable Materials" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2 class="section-title">Project Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Redesign MQ325/Mockup2.jpg" alt="MQ325 Gallery 1" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Redesign MQ325/disasemblato.jpg" alt="MQ325 Gallery 2" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Redesign MQ325/sezione snapfit cacciavite.65.png" alt="MQ325 Gallery 3" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Redesign MQ325/sezione snapfit cacciavite.142.png" alt="MQ325 Gallery 4" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Redesign MQ325/prodotto finito (1).png" alt="MQ325 Gallery 5" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Redesign MQ325/tasto prima e dopo.140(1).png" alt="MQ325 Gallery 6" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </section>
+
+        <div class="next-prev-projects">
+            <div class="prev-project">
+                <i class="fas fa-arrow-left"></i>
+                <div>
+                    <a href="guardme.html" class="project-nav-link">Previous Project</a>
+                    <span class="project-nav-name">GUARD-ME</span>
+                </div>
+            </div>
+            <div class="next-project">
+                <div>
+                    <a href="harmonia.html" class="project-nav-link">Next Project</a>
+                    <span class="project-nav-name">HARMONIA</span>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Mattia Fiacco Mazzini</h3>
+                <p>Industrial + Service and UX Designer</p>
+                <p>MSc Integrated Product Design - Politecnico di Milano</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> mattia.fiaccomazzini@mail.polimi.it</p>
+                <p><i class="fas fa-phone"></i> +39 331 563 1616</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024/2025 Mattia Fiacco Mazzini. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

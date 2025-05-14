@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUARD-ME - Mattia Fiacco Mazzini</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to project detail page */
+        .project-hero {
+            height: 70vh;
+            background-color: var(--light-gray);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 5rem;
+        }
+        
+        .project-hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        .project-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .meta-item span {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.3rem;
+        }
+        
+        .meta-item strong {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .section-image {
+            height: 400px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .section-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li i {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .gallery-section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .next-prev-projects {
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .prev-project, .next-project {
+            display: flex;
+            align-items: center;
+        }
+        
+        .prev-project i, .next-project i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .prev-project i {
+            margin-right: 1rem;
+        }
+        
+        .next-project i {
+            margin-left: 1rem;
+        }
+        
+        .project-nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .project-nav-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .project-nav-name {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 0.3rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .project-meta-info {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .next-prev-projects {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">MFM</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../projects.html" class="active">Projects</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero" style="background-image: url('../Immagini portfolio/Guard-me/Copertina.png'); background-size: cover; background-position: center;">
+            <div class="project-hero-content" style="background-color: rgba(255, 255, 255, 0.8); padding: 2rem; border-radius: 10px;">
+                <h1>GUARD-ME</h1>
+                <p>A wearable device designed to monitor vital parameters of elderly people during mountain hiking.</p>
+                <div class="project-meta-info">
+                    <div class="meta-item">
+                        <span>Project Type</span>
+                        <strong>Healthcare</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Duration</span>
+                        <strong>4 weeks</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Year</span>
+                        <strong>2023</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span>Category</span>
+                        <strong>Wearable Technology</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Guard-me/dettaglio cassa.92.jpg" alt="Guard-me Overview" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="section-text">
+                    <h3>The Concept</h3>
+                    <p>Guard-me is a wearable device designed to monitor the vital parameters of elderly people during mountain hiking activities. The project was developed during a trainee workshop under the guidance of Professors Suzuki Kazunari and Lorenzo Palegatta.</p>
+                    <p>Working in a team with Alessandro Cesa, Paolo Lunardon, and Martina Ricca, we focused on creating a solution that would allow elderly hikers to continue enjoying outdoor activities while providing peace of mind to both them and their companions.</p>
+                    <p>The device attaches to a backpack and continuously monitors the user's health status, providing real-time feedback through a color-coded system and alerting companions when intervention might be needed.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Research & Context</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Our research focused on understanding the needs of elderly walkers in mountain environments, a widely practiced activity both in Western countries and Japan (the main action scenario for our client).</p>
+                    <p>We identified several key user characteristics and needs:</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> <strong>Enthusiastic hikers</strong> who don't want to accept the limitations of aging</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Recent cardiovascular issues</strong> that create anxiety during physical activity</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Desire for independence</strong> while still having safety measures in place</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Need for non-intrusive monitoring</strong> that doesn't spoil the outdoor experience</li>
+                    </ul>
+                    <p>The project opportunity emerged: to create an integrable system that allows health status monitoring in real-time without alarming or annoying the user, while providing companions with the information they need to ensure safety.</p>
+                </div>
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Guard-me/foto veci allungata.jpg" alt="Guard-me Research" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">The Solution</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Guard-me/indicatore 1.72.jpg" alt="Guard-me Solution" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="section-text">
+                    <h3>How It Works</h3>
+                    <p>Guard-me is a device designed to monitor the vital parameters of elderly people by those accompanying them. The system consists of:</p>
+                    <ol>
+                        <li>
+                            <strong>Electronic monitoring patch:</strong>
+                            <p>Applied to the user's body, this patch collects vital data and transmits it to the main device.</p>
+                        </li>
+                        <li>
+                            <strong>Backpack-mounted indicator:</strong>
+                            <p>A circular device that attaches to the user's backpack and displays their health status through an intuitive color-coded system:</p>
+                            <ul>
+                                <li><strong style="color: #4CAF50;">Green (85%):</strong> User is at full strength and can continue the activity</li>
+                                <li><strong style="color: #FFEB3B;">Yellow (50%):</strong> User is beginning to fatigue and may need a break soon</li>
+                                <li><strong style="color: #F44336;">Red (10%):</strong> User has reached physical limits and needs to stop</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>SOS mode:</strong>
+                            <p>In emergency situations, the device emits intermittent sounds and lights to signal the severity of the situation and call for help.</p>
+                        </li>
+                    </ol>
+                    <p>This system allows companions to adjust their pace or advise the elderly user to take breaks based on objective health data rather than subjective assessment.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="section-title">Materials & Design</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <h3>Product Details</h3>
+                    <p>The Guard-me device was designed with careful consideration of materials and user interaction:</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-circle"></i> <strong>Patch for measuring vital levels:</strong> A comfortable, skin-friendly sensor that collects health data</li>
+                        <li><i class="fas fa-circle"></i> <strong>Rear clip for fixing:</strong> Aluminum construction for durability and secure attachment to backpacks</li>
+                        <li><i class="fas fa-circle"></i> <strong>Speaker:</strong> Integrated audio alert system for emergency situations</li>
+                        <li><i class="fas fa-circle"></i> <strong>Color-coded display:</strong> Intuitive visual feedback system visible from a distance</li>
+                    </ul>
+                    <p>The design draws inspiration from various wearable health monitoring devices, combining elements of medical technology with outdoor equipment aesthetics. Materials were selected for durability in outdoor environments while maintaining comfort and ease of use.</p>
+                </div>
+                <div class="section-image">
+                    <img src="../Immagini portfolio/Guard-me/cerotto.75.jpg" alt="Guard-me Materials" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2 class="section-title">Project Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Guard-me/dettaglio a 2.91.jpg" alt="Guard-me Gallery 1" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Guard-me/dettaglio clip .90.jpg" alt="Guard-me Gallery 2" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Guard-me/indicatore 1.jpg" alt="Guard-me Gallery 3" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Guard-me/tre indicatroie.85.jpg" alt="Guard-me Gallery 4" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Guard-me/cerotto.75.jpg" alt="Guard-me Gallery 5" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="gallery-item">
+                    <img src="../Immagini portfolio/Guard-me/Copertina.png" alt="Guard-me Gallery 6" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </section>
+
+        <div class="next-prev-projects">
+            <div class="prev-project">
+                <i class="fas fa-arrow-left"></i>
+                <div>
+                    <a href="airyoyo.html" class="project-nav-link">Previous Project</a>
+                    <span class="project-nav-name">AIRYO-YO</span>
+                </div>
+            </div>
+            <div class="next-project">
+                <div>
+                    <a href="redesignmq325.html" class="project-nav-link">Next Project</a>
+                    <span class="project-nav-name">REDESIGN MQ325</span>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Mattia Fiacco Mazzini</h3>
+                <p>Industrial + Service and UX Designer</p>
+                <p>MSc Integrated Product Design - Politecnico di Milano</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> mattia.fiaccomazzini@mail.polimi.it</p>
+                <p><i class="fas fa-phone"></i> +39 331 563 1616</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024/2025 Mattia Fiacco Mazzini. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
