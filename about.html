@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -8,31 +8,116 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Additional styles specific to about page */
-        .about-section {
-            padding: 8rem 0 5rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        .about-hero {
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10rem 0 4rem;
+            background-color: var(--light-gray);
+            position: relative;
         }
         
-        .about-section-title {
-            padding-left: 5%;
+        .about-hero .hero-content {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: transparent; /* Rimuove il rettangolo bianco */
+        }
+        
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .professional-info {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+        
+        .professional-info h2 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .main-skills {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-icon {
+            margin-right: 1rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        .main-skills p {
+            font-size: 0.95rem;
+            color: var(--dark-gray);
+        }
+        
+        .hero-description {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--dark-gray);
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
             margin-bottom: 2rem;
+            justify-content: flex-start;
+            padding-left: 5%;
+        }
+        
+        .download-btn {
+            background-color: #1a365d;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background-color: #2a4a7f;
+            transform: translateY(-2px);
+        }
+        
+        .about-section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .about-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: start;
+            align-items: stretch;
             padding: 0 5%;
         }
         
         .about-image {
-            height: 500px;
+            height: 100%;
             background-color: var(--light-gray);
-            border-radius: 8px; /* Bordi più arrotondati */
+            border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
         }
         
         .about-content h1 {
@@ -217,7 +302,140 @@
             color: var(--dark-gray);
         }
         
+        /* Certification Section Styles */
+        .certifications-section,
+        .awards-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .certifications-section {
+            background-color: var(--light-gray);
+        }
+        
+        .certifications-container,
+        .awards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .certification-item,
+        .award-item {
+            display: flex;
+            background-color: var(--background-color);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .certification-logo,
+        .award-logo {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background-color: #1a365d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+            font-size: 1.5rem;
+        }
+        
+        .award-badge {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        .certification-content,
+        .award-content {
+            flex-grow: 1;
+        }
+        
+        .certification-content h3,
+        .award-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .certification-issuer,
+        .award-issuer,
+        .award-association {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .certification-date,
+        .certification-id,
+        .certification-skills {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .credential-link {
+            display: inline-block;
+            color: #1a365d;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .credential-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .award-description {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .award-description p {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            line-height: 1.5;
+        }
+        
         @media screen and (max-width: 768px) {
+            .about-hero {
+                height: auto;
+                padding: 6rem 0 3rem;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .professional-info h2 {
+                font-size: 1.2rem;
+            }
+            
+            .location-connections {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .main-skills {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .skill-icon {
+                margin-bottom: 0.5rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
             .about-container {
                 grid-template-columns: 1fr;
             }
@@ -268,21 +486,35 @@
     </header>
 
     <main>
-        <section class="about-section">
-            <div class="about-section-title">
+        <section class="about-hero">
+            <div class="hero-content">
                 <h1 class="bicolor-title">About <span>Me</span></h1>
-                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                    <a href="#" class="btn">
-                        <i class="fas fa-download"></i> Download my CV
-                    </a>
-                    <a href="MATTIA FIACCO MAZZINI_PORTFOLIO for CCS DETROIT (MI).pdf" class="btn" download>
-                        <i class="fas fa-download"></i> Download my PORTFOLIO
-                    </a>
+                
+                <div class="professional-info">
+                    <h2>Industrial Product Designer _ MSc in Integrated Product Design at Politecnico di Milano</h2>
+                    
+                    <div class="main-skills">
+                        <div class="skill-icon"><i class="fas fa-gem"></i></div>
+                        <p><strong>Main skills:</strong> Product development • Service design • Design Thinking • Teamwork • User experience</p>
+                    </div>
                 </div>
             </div>
+        </section>
+        
+        <section class="about-section">
             <div class="about-container">
-                <div class="about-image">
-                    <img src="Immagini portfolio/Mattia Linkedin.jpg" alt="Mattia Fiacco Mazzini" style="width:100%; height:100%; object-fit:cover;">
+                <div style="display: flex; flex-direction: column;">
+                    <div class="download-buttons" style="margin-bottom: 1.5rem; padding-left: 0;">
+                        <a href="#" class="download-btn">
+                            <i class="fas fa-download"></i> DOWNLOAD MY CV
+                        </a>
+                        <a href="MATTIA FIACCO MAZZINI_PORTFOLIO for CCS DETROIT (MI).pdf" class="download-btn" download>
+                            <i class="fas fa-download"></i> DOWNLOAD MY PORTFOLIO
+                        </a>
+                    </div>
+                    <div class="about-image">
+                        <img src="Immagini portfolio/Mattia Linkedin.jpg" alt="Mattia Fiacco Mazzini" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
                 </div>
                 <div class="about-content">
                     <p>I am a student of Integrated Product Design at Politecnico di Milano, born and raised in Milan.</p>
@@ -301,8 +533,9 @@
                     <div class="timeline-content">
                         <div class="timeline-date">gen 2025 - giu 2025</div>
                         <h3>Exchange semester</h3>
-                        <h4>User Experience Design (MFA)</h4>
+                        <h4>User Experience Design (MA)</h4>
                         <p>College for Creative Studies</p>
+                        <p>Grade: GPA: 3.85/4.00</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -481,6 +714,68 @@
                 </div>
             </div>
         </section>
+
+        <section class="certifications-section">
+            <h2 class="section-title bicolor-title">Licenses and <span>Certifications</span></h2>
+            <div class="certifications-container">
+                <div class="certification-item">
+                    <div class="certification-logo">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>Duolingo English Test | Upper Intermediate: CEFR C1</h3>
+                        <p class="certification-issuer">Duolingo English Test</p>
+                        <p class="certification-date">Issue date: Sep 2024 · Expiration date: Sep 2026</p>
+                        <p class="certification-id">Credential ID: zmv4l9uvaeu74bk1</p>
+                        <a href="#" class="credential-link"><i class="fas fa-external-link-alt"></i> Show credential</a>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="certification-logo">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>Brainbow: Understanding Yourself and Others Better</h3>
+                        <p class="certification-issuer">Politecnico di Milano</p>
+                        <p class="certification-date">Issue date: Jun 2023</p>
+                        <p class="certification-id">Credential ID: gXpHLErfiMo-3762b757857e6ff7f28aeb6f94265dc8-WFiEYmHOh-3</p>
+                        <p class="certification-skills">Skills: Public speaking • Team building • Leadership development</p>
+                        <a href="https://app.myopenbadge.com/receive/WOep-8b58e4307c0cf7aa0b0d2d08ae2b3b74-Al54ya18nNWK-31722278009/gXpHLErfiMo-3762b757857e6ff7f28aeb6f94265dc8-WFiEYmHOh-3/public" target="_blank" class="credential-link"><i class="fas fa-external-link-alt"></i> Show credential</a>
+                    </div>
+                </div>
+
+                <div class="certification-item">
+                    <div class="certification-logo">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <div class="certification-content">
+                        <h3>TOEIC Listening & Reading 840/990 (B2)</h3>
+                        <p class="certification-issuer">ETS</p>
+                        <p class="certification-date">Issue date: Aug 2021 · Expiration date: Aug 2023</p>
+                        <p class="certification-skills">Skills: English language • English literature • English grammar</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="awards-section">
+            <h2 class="section-title bicolor-title">Awards and <span>Honors</span></h2>
+            <div class="awards-container">
+                <div class="award-item">
+                    <div class="award-logo">
+                        <span class="award-badge">CCS</span>
+                    </div>
+                    <div class="award-content">
+                        <h3>President's List</h3>
+                        <p class="award-issuer">Issued by College for Creative Studies · May 2025</p>
+                        <div class="award-description">
+                            <p>Awarded for academic excellence during my international exchange semester at CCS (Winter 2025). I completed 12 US credits with a GPA of 3.85/4.00 and was placed on the President's List, a distinction reserved for the top-performing students.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -497,7 +792,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Mattia Fiacco Mazzini. All rights reserved.</p>
+            <p>&copy; 2025 Mattia Fiacco Mazzini. All rights reserved.</p>
         </div>
     </footer>
 

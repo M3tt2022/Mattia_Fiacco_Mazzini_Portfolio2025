@@ -177,6 +177,146 @@
             transform: translateY(-2px);
         }
         
+        /* Interactive Contact Sequence Styles */
+        .contact-sequence {
+            position: relative;
+            min-height: 400px;
+        }
+        
+        .sequence-step {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .sequence-step.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .option-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #1a365d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .option-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .option-card p {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .back-button {
+            background-color: transparent;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-right: 1rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-content {
+            text-align: center;
+        }
+        
+        .step-animation {
+            margin-bottom: 2rem;
+        }
+        
+        .animation-icon {
+            font-size: 4rem;
+            color: #1a365d;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .contact-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-option-btn {
+            background-color: #1a365d;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-option-btn:hover {
+            background-color: #2a4a7f;
+            transform: translateY(-2px);
+        }
+        
         @media screen and (max-width: 768px) {
             .contact-container {
                 grid-template-columns: 1fr;
@@ -188,6 +328,10 @@
             
             .contact-hero h1 {
                 font-size: 2.5rem;
+            }
+            
+            .options-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -272,30 +416,138 @@
                 </div>
                 
                 <div class="contact-form">
-                    <h2>Send Me a Message</h2>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" required>
+                    <h2>Let's Connect</h2>
+                    
+                    <div class="contact-sequence" id="contactSequence">
+                        <!-- Initial Question -->
+                        <div class="sequence-step active" id="step-initial">
+                            <h3>How can I help you?</h3>
+                            <div class="options-container">
+                                <div class="option-card" data-next="step-collaboration">
+                                    <div class="option-icon">
+                                        <i class="fas fa-handshake"></i>
+                                    </div>
+                                    <h4>Collaboration</h4>
+                                    <p>I'm interested in working together on a project</p>
+                                </div>
+                                
+                                <div class="option-card" data-next="step-job">
+                                    <div class="option-icon">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <h4>Job Opportunity</h4>
+                                    <p>I have a job or internship opportunity</p>
+                                </div>
+                                
+                                <div class="option-card" data-next="step-question">
+                                    <div class="option-icon">
+                                        <i class="fas fa-question-circle"></i>
+                                    </div>
+                                    <h4>Project Question</h4>
+                                    <p>I have a question about one of your projects</p>
+                                </div>
+                                
+                                <div class="option-card" data-next="step-other">
+                                    <div class="option-icon">
+                                        <i class="fas fa-comment-dots"></i>
+                                    </div>
+                                    <h4>Something Else</h4>
+                                    <p>I'd like to discuss something different</p>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
+                        <!-- Collaboration Step -->
+                        <div class="sequence-step" id="step-collaboration">
+                            <div class="step-header">
+                                <button class="back-button" data-back="step-initial"><i class="fas fa-arrow-left"></i></button>
+                                <h3>Let's Collaborate</h3>
+                            </div>
+                            <div class="step-content">
+                                <div class="step-animation">
+                                    <i class="fas fa-handshake animation-icon"></i>
+                                </div>
+                                <p>I'm always open to exciting collaboration opportunities. The best way to discuss potential projects is through email or schedule a quick call.</p>
+                                <div class="contact-options">
+                                    <a href="mailto:mattia.fiaccomazzini@mail.polimi.it" class="contact-option-btn">
+                                        <i class="fas fa-envelope"></i> Send Email
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank" class="contact-option-btn">
+                                        <i class="fab fa-linkedin-in"></i> Connect on LinkedIn
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" required>
+                        <!-- Job Opportunity Step -->
+                        <div class="sequence-step" id="step-job">
+                            <div class="step-header">
+                                <button class="back-button" data-back="step-initial"><i class="fas fa-arrow-left"></i></button>
+                                <h3>Job Opportunities</h3>
+                            </div>
+                            <div class="step-content">
+                                <div class="step-animation">
+                                    <i class="fas fa-briefcase animation-icon"></i>
+                                </div>
+                                <p>Thank you for considering me for a position. I'd love to hear about the opportunity and discuss how my skills and experience align with your needs.</p>
+                                <div class="contact-options">
+                                    <a href="mailto:mattia.fiaccomazzini@mail.polimi.it?subject=Job Opportunity" class="contact-option-btn">
+                                        <i class="fas fa-envelope"></i> Email Job Details
+                                    </a>
+                                    <a href="tel:+393315631616" class="contact-option-btn">
+                                        <i class="fas fa-phone"></i> Call Me
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                        <!-- Project Question Step -->
+                        <div class="sequence-step" id="step-question">
+                            <div class="step-header">
+                                <button class="back-button" data-back="step-initial"><i class="fas fa-arrow-left"></i></button>
+                                <h3>Project Questions</h3>
+                            </div>
+                            <div class="step-content">
+                                <div class="step-animation">
+                                    <i class="fas fa-question-circle animation-icon"></i>
+                                </div>
+                                <p>I'm happy to provide more information about any of my projects. Feel free to reach out through any of these channels:</p>
+                                <div class="contact-options">
+                                    <a href="mailto:mattia.fiaccomazzini@mail.polimi.it?subject=Project Question" class="contact-option-btn">
+                                        <i class="fas fa-envelope"></i> Email Your Question
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank" class="contact-option-btn">
+                                        <i class="fab fa-linkedin-in"></i> Message on LinkedIn
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
+                        <!-- Other Step -->
+                        <div class="sequence-step" id="step-other">
+                            <div class="step-header">
+                                <button class="back-button" data-back="step-initial"><i class="fas fa-arrow-left"></i></button>
+                                <h3>Let's Talk</h3>
+                            </div>
+                            <div class="step-content">
+                                <div class="step-animation">
+                                    <i class="fas fa-comment-dots animation-icon"></i>
+                                </div>
+                                <p>Whatever you'd like to discuss, I'm all ears. Choose your preferred method of communication below:</p>
+                                <div class="contact-options">
+                                    <a href="mailto:mattia.fiaccomazzini@mail.polimi.it" class="contact-option-btn">
+                                        <i class="fas fa-envelope"></i> Email Me
+                                    </a>
+                                    <a href="tel:+393315631616" class="contact-option-btn">
+                                        <i class="fas fa-phone"></i> Call Me
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/mattia-fiacco-mazzini-b4b461320/" target="_blank" class="contact-option-btn">
+                                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -315,20 +567,61 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024/2025 Mattia Fiacco Mazzini. All rights reserved.</p>
+            <p>&copy; 2025 Mattia Fiacco Mazzini. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
     <script>
-        // Contact form submission handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Interactive Contact Sequence Handling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all option cards
+            const optionCards = document.querySelectorAll('.option-card');
             
-            // In a real implementation, you would send the form data to a server
-            // For this demo, we'll just show an alert
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
+            // Get all back buttons
+            const backButtons = document.querySelectorAll('.back-button');
+            
+            // Add click event listeners to option cards
+            optionCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Get the ID of the next step
+                    const nextStepId = this.getAttribute('data-next');
+                    
+                    // Hide current step
+                    document.querySelector('.sequence-step.active').classList.remove('active');
+                    
+                    // Show next step
+                    document.getElementById(nextStepId).classList.add('active');
+                    
+                    // Add entrance animation
+                    setTimeout(() => {
+                        document.getElementById(nextStepId).style.opacity = '1';
+                    }, 50);
+                });
+            });
+            
+            // Add click event listeners to back buttons
+            backButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Get the ID of the previous step
+                    const prevStepId = this.getAttribute('data-back');
+                    
+                    // Get current step
+                    const currentStep = this.closest('.sequence-step');
+                    
+                    // Hide current step
+                    currentStep.classList.remove('active');
+                    currentStep.style.opacity = '0';
+                    
+                    // Show previous step
+                    document.getElementById(prevStepId).classList.add('active');
+                    
+                    // Add entrance animation
+                    setTimeout(() => {
+                        document.getElementById(prevStepId).style.opacity = '1';
+                    }, 50);
+                });
+            });
         });
     </script>
 </body>
